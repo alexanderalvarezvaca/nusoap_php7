@@ -57,8 +57,8 @@ class soap_transport_http extends nusoap_base {
 	* @param boolean $use_curl Whether to try to force cURL use
 	* @access public
 	*/
-	function soap_transport_http($url, $curl_options = NULL, $use_curl = false){
-		parent::nusoap_base();
+	function __construct($url, $curl_options = NULL, $use_curl = false){
+		parent::__construct();
 		$this->debug("ctor url=$url use_curl=$use_curl curl_options:");
 		$this->appendDebug($this->varDump($curl_options));
 		$this->setURL($url);
@@ -339,7 +339,7 @@ class soap_transport_http extends nusoap_base {
 				if (isset($this->certRequest['verifyhost'])) {
 					$this->setCurlOption(CURLOPT_SSL_VERIFYHOST, $this->certRequest['verifyhost']);
 				} else {
-					$this->setCurlOption(CURLOPT_SSL_VERIFYHOST, 1);
+					$this->setCurlOption(CURLOPT_SSL_VERIFYHOST, 2);
 				}
 				if (isset($this->certRequest['sslcertfile'])) {
 					$this->setCurlOption(CURLOPT_SSLCERT, $this->certRequest['sslcertfile']);
