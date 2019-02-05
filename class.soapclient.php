@@ -95,8 +95,8 @@ class nusoap_client extends nusoap_base  {
 	* @param	string $portName optional portName in WSDL document
 	* @access   public
 	*/
-	function __construct($endpoint,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = ''){
-		parent::__construct();
+	function nusoap_client($endpoint,$wsdl = false,$proxyhost = false,$proxyport = false,$proxyusername = false, $proxypassword = false, $timeout = 0, $response_timeout = 30, $portName = ''){
+		parent::nusoap_base();
 		$this->endpoint = $endpoint;
 		$this->proxyhost = $proxyhost;
 		$this->proxyport = $proxyport;
@@ -303,20 +303,7 @@ class nusoap_client extends nusoap_base  {
 				$this->fault = true;
 				foreach($return as $k => $v){
 					$this->$k = $v;
-					/*PHP5*/
-					/*
 					$this->debug("$k = $v<br>");
-					*/
-					/*PHP6*/
-					/*PHP7*/
-					
-					if(is_scalar($v))	 					
- 						$this->debug("$k = $v<br>");	
- 					else	
- 						$this->debug("$k = ".print_r($v, true)."<br>");
- 					
- 					/*PHP7*/
-
 				}
 				return $return;
 			} elseif ($style == 'document') {
